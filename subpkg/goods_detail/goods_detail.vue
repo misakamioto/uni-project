@@ -1,6 +1,6 @@
 <template>
   <view>
-    {{name}}
+    {{hh}}
   </view>
 </template>
 
@@ -8,7 +8,7 @@
   export default {
     data() {
       return {
-        name:"goods_detail"
+        hh:"goods_detail"
       };
     }
   }
