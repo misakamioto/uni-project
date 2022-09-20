@@ -1,5 +1,6 @@
 <template>
   <view>
+    <my-search @click.native="gotoSearch"></my-search>
     <!-- 左侧分类 -->
     <view class="scroll">
       <scroll-view class="left_scroll" scroll-y="true" :style="'height:' + windowHeight + 'px'">
@@ -13,7 +14,7 @@
           <view class="right_scroll_text">/{{item.cat_name}}/</view>
           <!-- 图片与文本 -->
           <view class="right_scroll_txtimg">
-            <view class="right_scroll_image" v-for="(item2,index2) in item.children" :key="index" 
+            <view class="right_scroll_image" v-for="(item2,index2) in item.children" :key="index2" 
             @click="toGoogdList(item2.cat_id)">
               <image :src="item2.cat_icon.replace('dev','web')" mode="heightFix"></image>
               <text>{{item2.cat_name}}</text>
@@ -27,7 +28,9 @@
 </template>
 
 <script>
+  import badgeMix from "@/mixins/tabbar-badge.js"
   export default {
+    mixins:[badgeMix],
     data() {
       return {
         // 窗口可用大小
@@ -43,7 +46,7 @@
     onLoad() {
       // 获取窗口可用大小
       const sysInfo = uni.getSystemInfoSync()
-      this.windowHeight = sysInfo.windowHeight
+      this.windowHeight = sysInfo.windowHeight - 50
       // 获取分类列表
       this.getCateList()
     },
@@ -64,7 +67,13 @@
       // 点击跳转商品列表页
       toGoogdList(cat_id){
         uni.navigateTo({
-          url:"/subpkg/goods_list/goods_list?cat_id=" + cat_id
+          url:`/subpkg/goods_list/goods_list?cat_id=${cat_id}`
+        })
+      },
+      // 点击搜索框跳转搜索页面
+      gotoSearch(){
+        uni.navigateTo({
+          url:"/subpkg/search/search"
         })
       }
     },

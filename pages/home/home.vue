@@ -1,5 +1,8 @@
 <template>
   <view>
+    <view class="search">
+      <my-search @click.native="gotoSearch"></my-search>
+    </view>
     <!-- 轮播图 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <swiper-item v-for="(item,index) in swiperList" :key="index">
@@ -34,7 +37,9 @@
 </template>
 
 <script>
+  import badgeMix from "@/mixins/tabbar-badge.js"
   export default {
+    mixins:[badgeMix],
     data() {
       return {
         // 轮播图列表
@@ -93,12 +98,24 @@
           })
           this.flootList = res.message
         }
+      },
+      // 点击搜索跳转搜索页
+      gotoSearch(){
+        uni.navigateTo({
+          url:"/subpkg/search/search"
+        })
       }
     },
   }
 </script>
 
 <style lang="scss">
+  // 顶部悬浮
+  // .search{
+  //   position: sticky;
+  //   top: 0;
+  //   z-index: 9999;
+  // }
   swiper {
    height: 330rpx;
    swiper-item,

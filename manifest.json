@@ -56,9 +56,16 @@
             "es6" : true,
             "postcss" : true,
             "minified" : true,
-            "checkSiteMap":false
+            "checkSiteMap" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {},
+        "requiredPrivateInfos":[
+          "chooseAddress"
+        ],
+        "unipush" : {
+            "enable" : false
+        }
     },
     "vueVersion" : "2"
 }
